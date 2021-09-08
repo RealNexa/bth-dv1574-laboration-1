@@ -1,18 +1,18 @@
 import random
-"""
-Note:
-Om prgammet hade varit i ett större system hade inte funktionen validate_pwd skrivit ut en massa
-saker till konsolen. Funktionen hade istället retunerat en dictionary som innehåller om
-lösenordet är giltigt eller inte och som innehåller vilken anledning till varför lösenordet
-inte är giltigt. Men eftersom funktionen validate_pwd måste retunera
-ett boolean värde, för att codeGrade ska kunna testa funktionen, går det inte att retunera
-en dictionary. Att lösa problemet trodde jag inte skulle ta så lång tid då
-jag har programmerat mycket i python innan. Jag trodde först det kanske skulle
-ta 30-60 min att skriva och renskriva koden. Men när jag började
-programmera ville jag generallisera problemet genom att kunna ända lite på passwordpolicyn.
-Detta visade sig att ta längre tid än förväntat. Det slutade med att ta ungerfär 2-3 timmar
-att komma på hur man skulle implementera, skriva och sedan renskriva koden så att det blev 
-ett bra passwordpolicy system. """
+
+# Note:
+# Om prgammet hade varit i ett större system hade inte funktionen validate_pwd skrivit ut en massa
+# saker till konsolen. Funktionen hade istället retunerat en dictionary som innehåller om
+# lösenordet är giltigt eller inte och som innehåller vilken anledning till varför lösenordet
+# inte är giltigt. Men eftersom funktionen validate_pwd måste retunera
+# ett boolean värde, för att codeGrade ska kunna testa funktionen, går det inte att retunera
+# en dictionary. Att lösa problemet trodde jag inte skulle ta så lång tid då
+# jag har programmerat mycket i python innan. Jag trodde först det kanske skulle
+# ta 30-60 min att skriva och renskriva koden. Men när jag började
+# programmera ville jag generallisera problemet genom att kunna ända lite på passwordpolicyn.
+# Detta visade sig att ta längre tid än förväntat. Det slutade med att ta ungerfär 2-3 timmar
+# att komma på hur man skulle implementera, skriva och sedan renskriva koden så att det blev
+# ett bra passwordpolicy system.
 
 # Password Policy
 MINIMUM_PASSWORD_LENGTH = 6
@@ -50,7 +50,7 @@ def contains(password, charset, minumum_count = 1):
             minumum_count -= 1
             if minumum_count == 0:
                 return True
-  
+
     return False
 
 
@@ -67,31 +67,37 @@ def validate_pwd(password):
         password_is_valid = False
 
     if len(password) < MINIMUM_PASSWORD_LENGTH:
-        print("Invalid Password: Password must contain at least {} characters".format(MINIMUM_PASSWORD_LENGTH))
+        print("Invalid Password: Password must contain\
+               at least {} characters".format(MINIMUM_PASSWORD_LENGTH))
         password_is_valid = False
 
     elif len(password) > MAXIMUM_PASSWORD_LENGTH:
-        print("Invalid Password: Password can only contain a mamimum of {} characters".format(MAXIMUM_PASSWORD_LENGTH))
+        print("Invalid Password: Password can only contain\
+               a mamimum of {} characters".format(MAXIMUM_PASSWORD_LENGTH))
         password_is_valid = False
 
     contains_number = contains(password, "1234567890", NUMBER_AMOUNT)
     if not contains_number:
-        print("Invalid Password: Password must contain at least {} numbers".format(NUMBER_AMOUNT))
+        print("Invalid Password: Password must contain\
+               at least {} numbers".format(NUMBER_AMOUNT))
         password_is_valid = False
 
     contains_special = contains(password, SPECIAL_CHARACTERS, SPECIAL_AMOUNT)
     if not contains_special:
-        print("Invalid Password: Password must contain at least {} special characters".format(SPECIAL_AMOUNT))
+        print("Invalid Password: Password must contain\
+               at least {} special characters".format(SPECIAL_AMOUNT))
         password_is_valid = False
 
     contains_small_letter = contains(password, "abcdefghijklmnopqrstuvwxyz", SMALL_LETTERS_AMOUNT)
     if not contains_small_letter:
-        print("Invalid Password: Password must at least contain {} small letters".format(SMALL_LETTERS_AMOUNT))
+        print("Invalid Password: Password must at least contain\
+               {} small letters".format(SMALL_LETTERS_AMOUNT))
         password_is_valid = False
 
     contains_large_letter = contains(password, "ABCDEFGHIJKLMNOPQRSTUWVXYZ", LARGE_LETTERS_AMOUNT)
     if not contains_large_letter:
-        print("Invalid Password: Password must at least contain {} capital letters".format(LARGE_LETTERS_AMOUNT))
+        print("Invalid Password: Password must at least contain\
+               {} capital letters".format(LARGE_LETTERS_AMOUNT))
         password_is_valid = False
 
     return password_is_valid
